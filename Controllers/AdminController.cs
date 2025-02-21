@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System.Threading.Tasks;
+using Assignment_1.Models;
 
 namespace Assignment_1.Controllers
 {
@@ -11,9 +12,9 @@ namespace Assignment_1.Controllers
     public class AdminController : Controller
     {
         private readonly ApplicationDbContext _context;
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<CustomUser> _userManager;
 
-        public AdminController(ApplicationDbContext context, UserManager<IdentityUser> userManager)
+        public AdminController(ApplicationDbContext context, UserManager<CustomUser> userManager)
         {
             _context = context;
             _userManager = userManager;
@@ -23,7 +24,11 @@ namespace Assignment_1.Controllers
         {
             var pendingUsers = _context.ContributorApprovals
                 .Where(u => !u.IsApproved)
-                .Join(_context.Users, ca => ca.UserId, u => u.Id, (ca, u) => new { ca.Id, u.Email })
+                .Join(_context.Users, ca => ca.UserId, u => u.Id, (ca, u) => new ContributorApprovalViewModel
+                {
+                    ApprovalId = ca.Id,
+                    Email = u.Email
+                })
                 .ToList();
 
             return View(pendingUsers);
@@ -39,6 +44,11 @@ namespace Assignment_1.Controllers
                 _context.ContributorApprovals.Update(approvalRecord);
                 await _context.SaveChangesAsync();
             }
+            else 
+            {
+                return NotFound();
+            }
+
             return RedirectToAction("ApproveContributors");
         }
     }

@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Assignment_1.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250220161235_V1")]
-    partial class V1
+    [Migration("20250221022803_M1")]
+    partial class M1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -49,7 +49,6 @@ namespace Assignment_1.Data.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("ContributorUsername")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("CreateDate")
@@ -68,6 +67,56 @@ namespace Assignment_1.Data.Migrations
                     b.HasKey("ArticleId");
 
                     b.ToTable("Articles");
+                });
+
+            modelBuilder.Entity("Assignment_1.Models.CustomRole", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(256)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("NormalizedName")
+                        .HasMaxLength(256)
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasDatabaseName("RoleNameIndex");
+
+                    b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "3a977926-eb69-426f-9cac-76b210c26879",
+                            CreatedDate = new DateTime(2025, 2, 20, 18, 28, 2, 938, DateTimeKind.Local).AddTicks(4803),
+                            Description = "Admin role",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        },
+                        new
+                        {
+                            Id = "afef018a-6de9-41f8-9072-5ea40ace09d8",
+                            CreatedDate = new DateTime(2025, 2, 20, 18, 28, 2, 939, DateTimeKind.Local).AddTicks(8050),
+                            Description = "Contributor role",
+                            Name = "Contributor",
+                            NormalizedName = "CONTRIBUTOR"
+                        });
                 });
 
             modelBuilder.Entity("Assignment_1.Models.CustomUser", b =>
@@ -140,32 +189,44 @@ namespace Assignment_1.Data.Migrations
                         .HasDatabaseName("UserNameIndex");
 
                     b.ToTable("AspNetUsers", (string)null);
-                });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Name")
-                        .HasMaxLength(256)
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("NormalizedName")
-                        .HasMaxLength(256)
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedName")
-                        .IsUnique()
-                        .HasDatabaseName("RoleNameIndex");
-
-                    b.ToTable("AspNetRoles", (string)null);
+                    b.HasData(
+                        new
+                        {
+                            Id = "203a30c1-5d45-4752-bfc3-758c78e1551d",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "b1407843-c3ff-4164-a7f7-88af91e312ea",
+                            Email = "a@a.a",
+                            EmailConfirmed = true,
+                            FirstName = "Adam",
+                            LastName = "Anderson",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "A@A.A",
+                            NormalizedUserName = "A@A.A",
+                            PasswordHash = "AQAAAAIAAYagAAAAEG9oyvEw9kpgAL6nZJZdWds6gxaBIbIH/jbkoGdA67kuSao4DVxsK1bScyqzj+otcg==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "6872cc61-6bcc-4722-822d-9b4c0890a2fd",
+                            TwoFactorEnabled = false,
+                            UserName = "a@a.a"
+                        },
+                        new
+                        {
+                            Id = "637c8927-9087-4224-b2c7-ca3afaeb5a4c",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "0cd36e9f-cd07-4cf8-9eba-da0d5b03d025",
+                            Email = "c@c.c",
+                            EmailConfirmed = true,
+                            FirstName = "Cindy",
+                            LastName = "Cain",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "C@C.C",
+                            NormalizedUserName = "C@C.C",
+                            PasswordHash = "AQAAAAIAAYagAAAAED4a8iwMMkxYf8tFAz4zGNjneVWiwQlv4VsBnpL7xS/Zx+kqUDtANuFSzOA8Bc7gQw==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "5cd3abf7-df98-4dbb-877d-5ab0a8a0a42b",
+                            TwoFactorEnabled = false,
+                            UserName = "c@c.c"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -251,6 +312,18 @@ namespace Assignment_1.Data.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "203a30c1-5d45-4752-bfc3-758c78e1551d",
+                            RoleId = "3a977926-eb69-426f-9cac-76b210c26879"
+                        },
+                        new
+                        {
+                            UserId = "637c8927-9087-4224-b2c7-ca3afaeb5a4c",
+                            RoleId = "afef018a-6de9-41f8-9072-5ea40ace09d8"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -276,7 +349,7 @@ namespace Assignment_1.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                    b.HasOne("Assignment_1.Models.CustomRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -303,7 +376,7 @@ namespace Assignment_1.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                    b.HasOne("Assignment_1.Models.CustomRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)

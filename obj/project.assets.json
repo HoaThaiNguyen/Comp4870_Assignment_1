@@ -5597,7 +5597,7 @@
         "Templates/BlazorIdentity/IdentityNoOpEmailSender.tt",
         "Templates/BlazorIdentity/IdentityRedirectManager.tt",
         "Templates/BlazorIdentity/IdentityRevalidatingAuthenticationStateProvider.tt",
-        "Templates/BlazorIdentity/IdentityUserAccessor.tt",
+        "Templates/BlazorIdentity/CustomUserAccessor.tt",
         "Templates/BlazorIdentity/Pages/ConfirmEmail.tt",
         "Templates/BlazorIdentity/Pages/ConfirmEmailChange.tt",
         "Templates/BlazorIdentity/Pages/ExternalLogin.tt",

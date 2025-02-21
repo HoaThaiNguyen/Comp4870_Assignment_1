@@ -10,16 +10,16 @@ using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading;
 using System.Threading.Tasks;
-using Assignment_1.Data;
-using Assignment_1.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
+using Assignment_1.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using Assignment_1.Data;
 
 namespace Assignment_1.Areas.Identity.Pages.Account
 {
@@ -31,9 +31,7 @@ namespace Assignment_1.Areas.Identity.Pages.Account
         private readonly IUserEmailStore<CustomUser> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
-
         private readonly ApplicationDbContext _context;
-
 
         public RegisterModel(
             UserManager<CustomUser> userManager,
@@ -133,7 +131,7 @@ namespace Assignment_1.Areas.Identity.Pages.Account
                     LastName = Input.LastName,
                     EmailConfirmed = true
                 };
-
+                
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);
@@ -166,7 +164,7 @@ namespace Assignment_1.Areas.Identity.Pages.Account
 
                     await _userManager.AddToRoleAsync(user, "Contributor");
 
-                    // Mark as unapproved
+                    // Mark user as unapproved in database
                     _context.ContributorApprovals.Add(new ContributorApproval
                     {
                         UserId = user.Id,
@@ -175,7 +173,6 @@ namespace Assignment_1.Areas.Identity.Pages.Account
                     await _context.SaveChangesAsync();
 
                     return RedirectToPage("Login");
-
                 }
                 foreach (var error in result.Errors)
                 {

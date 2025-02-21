@@ -9,15 +9,15 @@ namespace Assignment_1.Models
         public int ArticleId { get; set; }
         
         [Required]
-        public string Title { get; set; }
+        public string? Title { get; set; }
         
         [Required]
-        public string Body { get; set; }
+        public string? Body { get; set; }
         
         public DateTime CreateDate { get; set; } = DateTime.UtcNow;
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
 
-        public string ContributorUsername { get; set; }
+        public string? ContributorUsername { get; set; }
     }
 }

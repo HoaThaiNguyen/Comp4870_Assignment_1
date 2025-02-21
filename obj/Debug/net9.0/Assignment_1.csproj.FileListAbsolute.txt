@@ -409,3 +409,4 @@ E:\4870\Assignment_1\bin\Debug\net9.0\ru\Microsoft.CodeAnalysis.Scripting.resour
 E:\4870\Assignment_1\bin\Debug\net9.0\tr\Microsoft.CodeAnalysis.Scripting.resources.dll
 E:\4870\Assignment_1\bin\Debug\net9.0\zh-Hans\Microsoft.CodeAnalysis.Scripting.resources.dll
 E:\4870\Assignment_1\bin\Debug\net9.0\zh-Hant\Microsoft.CodeAnalysis.Scripting.resources.dll
+E:\4870\Assignment_1\obj\Debug\net9.0\Assignment_1.sourcelink.json

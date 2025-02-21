@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace Assignment_1.Data
 {
-    public class ApplicationDbContext : IdentityDbContext<CustomUser>
+    public class ApplicationDbContext : IdentityDbContext<CustomUser, CustomRole, string>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
