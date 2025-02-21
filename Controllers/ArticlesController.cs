@@ -35,7 +35,7 @@ namespace Assignment_1.Controllers
         [Authorize(Roles = "Contributor")]
         public async Task<IActionResult> Create(Article article)
         {
-            article.ContributorUsername = User.Identity.Name;
+            article.ContributorUsername = User.Identity?.Name;
             _context.Articles.Add(article);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");

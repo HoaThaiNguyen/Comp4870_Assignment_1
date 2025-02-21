@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using Assignment_1.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -36,7 +37,9 @@ namespace Assignment_1.Data
     public class ContributorApproval
     {
         public int Id { get; set; }
-        public string UserId { get; set; }
+        
+        [Required]
+        public string? UserId { get; set; }
         public bool IsApproved { get; set; }
     }
 }
