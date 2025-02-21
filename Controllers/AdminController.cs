@@ -22,36 +22,31 @@ namespace Assignment_1.Controllers
 
         public IActionResult ApproveContributors()
         {
-            if (_context == null || _context.Users == null || _context.ContributorApprovals == null)
+            if (_context == null || _context.Users == null)
             {
-                return View(new List<ContributorApprovalViewModel>()); // Return empty list if database is null
+                return View(new List<CustomUser>()); // Return empty list if database is null
             }
-            
-            var pendingUsers = _context.ContributorApprovals
-                .Where(u => !u.IsApproved)
-                .Join(_context.Users, ca => ca.UserId, u => u.Id, (ca, u) => new ContributorApprovalViewModel
-                {
-                    ApprovalId = ca.Id,
-                    Email = u.Email
-                })
+
+            var pendingUsers = _context.Users
+                .Where(u => !u.isApproved)
                 .ToList();
 
             if (pendingUsers == null)
             {
-                pendingUsers = new List<ContributorApprovalViewModel>(); // ✅ Ensure Model is never null
+                pendingUsers = new List<CustomUser>(); // Ensure Model is never null
             }
 
             return View(pendingUsers);
         }
 
         [HttpPost]
-        public async Task<IActionResult> ApproveContributor(int id)
+        public async Task<IActionResult> ApproveContributor(string id)
         {
-            var approvalRecord = _context.ContributorApprovals.FirstOrDefault(a => a.Id == id);
+            var approvalRecord = _context.Users?.FirstOrDefault(a => a.Id == id);
             if (approvalRecord != null)
             {
-                approvalRecord.IsApproved = true;
-                _context.ContributorApprovals.Update(approvalRecord);
+                approvalRecord.isApproved = true;
+                _context.Users?.Update(approvalRecord);
                 await _context.SaveChangesAsync();
             }
             else 
@@ -61,5 +56,36 @@ namespace Assignment_1.Controllers
 
             return RedirectToAction("ApproveContributors");
         }
+
+        public IActionResult ManageUsers()
+        {
+            if (_context == null || _context.Users == null)
+            {
+                return View(new List<CustomUser>()); // Return empty list if database is null
+            }
+
+            var users = _context.Users.ToList();
+            var userRoles = new Dictionary<string, string>();
+                
+            if (users == null)
+            {
+                users = new List<CustomUser>(); // Ensure Model is never null
+            }
+
+            return View(users);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ToggleApproval(string id)
+        {
+            var user = await _userManager.FindByIdAsync(id);
+            if (user == null) return NotFound();
+
+            user.isApproved = !user.isApproved; // ✅ Toggle approval status
+            await _userManager.UpdateAsync(user);
+
+            return RedirectToAction("ManageUsers");
+        }
+
     }
 }

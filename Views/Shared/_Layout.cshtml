@@ -26,12 +26,19 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
+
+                        @if (User.IsInRole("Admin")) 
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-controller="Admin" asp-action="ApproveContributors">Approve Contributors</a>
+                            </li>
+                        }
                         
                         @if (User.IsInRole("Admin")) 
                         {
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Admin" asp-action="ApproveContributors">Approve Contributors</a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="ManageUser" asp-action="Index">Manage User</a>
+                            </li>
                         }
 
                     </ul>

@@ -1,9 +1,9 @@
 ﻿@model List<Assignment_1.Models.CustomUser>
 @{
-    ViewData["Title"] = "Approve Contributors";
+    ViewData["Title"] = "Manage Users";
 }
 
-<h2>Pending Contributor Approvals</h2>
+<h2>All users</h2>
 
 @if (Model != null && Model.Any())
 {
@@ -25,7 +25,6 @@
                     <td>@user.Email</td>
                     <td>
                         <form method="post" asp-action="ApproveContributor" asp-controller="Admin">
-                            <input type="hidden" name="id" value="@user.Id"/>
                             <button type="submit" class="btn btn-success">Approve</button>
                         </form>
                     </td>

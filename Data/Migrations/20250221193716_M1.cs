@@ -54,6 +54,7 @@ namespace Assignment_1.Data.Migrations
                     Id = table.Column<string>(type: "TEXT", nullable: false),
                     FirstName = table.Column<string>(type: "TEXT", nullable: false),
                     LastName = table.Column<string>(type: "TEXT", nullable: false),
+                    isApproved = table.Column<bool>(type: "INTEGER", nullable: false),
                     UserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
@@ -72,20 +73,6 @@ namespace Assignment_1.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ContributorApprovals",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    UserId = table.Column<string>(type: "TEXT", nullable: false),
-                    IsApproved = table.Column<bool>(type: "INTEGER", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ContributorApprovals", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -199,17 +186,17 @@ namespace Assignment_1.Data.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "CreatedDate", "Description", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "3a977926-eb69-426f-9cac-76b210c26879", null, new DateTime(2025, 2, 20, 18, 28, 2, 938, DateTimeKind.Local).AddTicks(4803), "Admin role", "Admin", "ADMIN" },
-                    { "afef018a-6de9-41f8-9072-5ea40ace09d8", null, new DateTime(2025, 2, 20, 18, 28, 2, 939, DateTimeKind.Local).AddTicks(8050), "Contributor role", "Contributor", "CONTRIBUTOR" }
+                    { "2135cca7-4d21-476b-b752-f74f587f3675", null, new DateTime(2025, 2, 21, 11, 37, 14, 986, DateTimeKind.Local).AddTicks(9885), "Admin role", "Admin", "ADMIN" },
+                    { "d08bc6bc-41c1-4302-b13b-e8321c5e44a9", null, new DateTime(2025, 2, 21, 11, 37, 14, 988, DateTimeKind.Local).AddTicks(3744), "Contributor role", "Contributor", "CONTRIBUTOR" }
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
-                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName", "isApproved" },
                 values: new object[,]
                 {
-                    { "203a30c1-5d45-4752-bfc3-758c78e1551d", 0, "b1407843-c3ff-4164-a7f7-88af91e312ea", "a@a.a", true, "Adam", "Anderson", false, null, "A@A.A", "A@A.A", "AQAAAAIAAYagAAAAEG9oyvEw9kpgAL6nZJZdWds6gxaBIbIH/jbkoGdA67kuSao4DVxsK1bScyqzj+otcg==", null, false, "6872cc61-6bcc-4722-822d-9b4c0890a2fd", false, "a@a.a" },
-                    { "637c8927-9087-4224-b2c7-ca3afaeb5a4c", 0, "0cd36e9f-cd07-4cf8-9eba-da0d5b03d025", "c@c.c", true, "Cindy", "Cain", false, null, "C@C.C", "C@C.C", "AQAAAAIAAYagAAAAED4a8iwMMkxYf8tFAz4zGNjneVWiwQlv4VsBnpL7xS/Zx+kqUDtANuFSzOA8Bc7gQw==", null, false, "5cd3abf7-df98-4dbb-877d-5ab0a8a0a42b", false, "c@c.c" }
+                    { "1dee59a9-a51f-4b6b-aee6-929b2faddfe5", 0, "a5b2ec98-47e4-4509-935f-571b44f6b7e1", "a@a.a", true, "Adam", "Anderson", false, null, "A@A.A", "A@A.A", "AQAAAAIAAYagAAAAEETgjlQvh5c6vAK3uq9jIGOh8Nyp58rgPJ08J2Mrs9kqDGaiCoB78MjZYy4NrAVQpA==", null, false, "2f5c7ae0-a777-48b7-9291-b4b8edbcdf32", false, "a@a.a", true },
+                    { "649c9c98-9c9a-40f5-b36a-c67e0c1a4e90", 0, "b753febb-a550-4527-9410-bbe6562dbca2", "c@c.c", true, "Cindy", "Cain", false, null, "C@C.C", "C@C.C", "AQAAAAIAAYagAAAAEOqDLzrL0grxGwlZmmYjfCCM8yKgnf/L1Qnc2ZX3/vSJ9RTXTTGXBRQ+WFRqmXUbNw==", null, false, "d97cfe3c-89ec-4a88-9e01-bdae34f4c9a9", false, "c@c.c", true }
                 });
 
             migrationBuilder.InsertData(
@@ -217,8 +204,8 @@ namespace Assignment_1.Data.Migrations
                 columns: new[] { "RoleId", "UserId" },
                 values: new object[,]
                 {
-                    { "3a977926-eb69-426f-9cac-76b210c26879", "203a30c1-5d45-4752-bfc3-758c78e1551d" },
-                    { "afef018a-6de9-41f8-9072-5ea40ace09d8", "637c8927-9087-4224-b2c7-ca3afaeb5a4c" }
+                    { "2135cca7-4d21-476b-b752-f74f587f3675", "1dee59a9-a51f-4b6b-aee6-929b2faddfe5" },
+                    { "d08bc6bc-41c1-4302-b13b-e8321c5e44a9", "649c9c98-9c9a-40f5-b36a-c67e0c1a4e90" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -279,9 +266,6 @@ namespace Assignment_1.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
-
-            migrationBuilder.DropTable(
-                name: "ContributorApprovals");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

@@ -12,4 +12,7 @@ public class CustomUser : IdentityUser {
   
   [Required]
   public string? LastName { get; set; }
+
+  [Required]
+  public bool isApproved {get; set;} = false;
 }

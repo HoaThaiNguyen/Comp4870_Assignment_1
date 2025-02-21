@@ -17,24 +17,6 @@ namespace Assignment_1.Data.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.2");
 
-            modelBuilder.Entity("Assignment_1.Data.ContributorApproval", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("IsApproved")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ContributorApprovals");
-                });
-
             modelBuilder.Entity("Assignment_1.Models.Article", b =>
                 {
                     b.Property<int>("ArticleId")
@@ -100,16 +82,16 @@ namespace Assignment_1.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "ed9f131a-b508-438e-a2b0-da7594be0635",
-                            CreatedDate = new DateTime(2025, 2, 21, 7, 58, 28, 126, DateTimeKind.Local).AddTicks(4794),
+                            Id = "2135cca7-4d21-476b-b752-f74f587f3675",
+                            CreatedDate = new DateTime(2025, 2, 21, 11, 37, 14, 986, DateTimeKind.Local).AddTicks(9885),
                             Description = "Admin role",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "a2d26240-27e2-4833-a4dd-b706fc3657e8",
-                            CreatedDate = new DateTime(2025, 2, 21, 7, 58, 28, 127, DateTimeKind.Local).AddTicks(9787),
+                            Id = "d08bc6bc-41c1-4302-b13b-e8321c5e44a9",
+                            CreatedDate = new DateTime(2025, 2, 21, 11, 37, 14, 988, DateTimeKind.Local).AddTicks(3744),
                             Description = "Contributor role",
                             Name = "Contributor",
                             NormalizedName = "CONTRIBUTOR"
@@ -176,6 +158,9 @@ namespace Assignment_1.Data.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("TEXT");
 
+                    b.Property<bool>("isApproved")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedEmail")
@@ -190,9 +175,9 @@ namespace Assignment_1.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "eb28ecce-5b4a-464f-a840-be132abd8c21",
+                            Id = "1dee59a9-a51f-4b6b-aee6-929b2faddfe5",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "b37eba6f-0429-4b34-b095-39b982702eac",
+                            ConcurrencyStamp = "a5b2ec98-47e4-4509-935f-571b44f6b7e1",
                             Email = "a@a.a",
                             EmailConfirmed = true,
                             FirstName = "Adam",
@@ -200,17 +185,18 @@ namespace Assignment_1.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "A@A.A",
                             NormalizedUserName = "A@A.A",
-                            PasswordHash = "AQAAAAIAAYagAAAAEBUtxPOXITIOeX0/M4bs3t6U2zeSxTOa/Z7Km84L7cOPT4WtvifTNeV/Xrwl8srMdQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEETgjlQvh5c6vAK3uq9jIGOh8Nyp58rgPJ08J2Mrs9kqDGaiCoB78MjZYy4NrAVQpA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "9796b0a4-5b71-4e16-b970-4bfd41481755",
+                            SecurityStamp = "2f5c7ae0-a777-48b7-9291-b4b8edbcdf32",
                             TwoFactorEnabled = false,
-                            UserName = "a@a.a"
+                            UserName = "a@a.a",
+                            isApproved = true
                         },
                         new
                         {
-                            Id = "23c8ad8c-2ba6-436a-a27d-35e50eb5880f",
+                            Id = "649c9c98-9c9a-40f5-b36a-c67e0c1a4e90",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "64dd8679-e8e5-4c65-8c21-26592df19537",
+                            ConcurrencyStamp = "b753febb-a550-4527-9410-bbe6562dbca2",
                             Email = "c@c.c",
                             EmailConfirmed = true,
                             FirstName = "Cindy",
@@ -218,11 +204,12 @@ namespace Assignment_1.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "C@C.C",
                             NormalizedUserName = "C@C.C",
-                            PasswordHash = "AQAAAAIAAYagAAAAEAr5l4xd3u8PcpYth7/9yiSqYHToY8s9z6tkOOEDIbsOMDBFI9Hnf8EZtp54aUbBCQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEOqDLzrL0grxGwlZmmYjfCCM8yKgnf/L1Qnc2ZX3/vSJ9RTXTTGXBRQ+WFRqmXUbNw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "f945af48-16ba-4ebc-a2cf-376967665eb5",
+                            SecurityStamp = "d97cfe3c-89ec-4a88-9e01-bdae34f4c9a9",
                             TwoFactorEnabled = false,
-                            UserName = "c@c.c"
+                            UserName = "c@c.c",
+                            isApproved = true
                         });
                 });
 
@@ -313,13 +300,13 @@ namespace Assignment_1.Data.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "eb28ecce-5b4a-464f-a840-be132abd8c21",
-                            RoleId = "ed9f131a-b508-438e-a2b0-da7594be0635"
+                            UserId = "1dee59a9-a51f-4b6b-aee6-929b2faddfe5",
+                            RoleId = "2135cca7-4d21-476b-b752-f74f587f3675"
                         },
                         new
                         {
-                            UserId = "23c8ad8c-2ba6-436a-a27d-35e50eb5880f",
-                            RoleId = "a2d26240-27e2-4833-a4dd-b706fc3657e8"
+                            UserId = "649c9c98-9c9a-40f5-b36a-c67e0c1a4e90",
+                            RoleId = "d08bc6bc-41c1-4302-b13b-e8321c5e44a9"
                         });
                 });
 

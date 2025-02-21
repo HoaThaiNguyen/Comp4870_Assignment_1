@@ -129,7 +129,8 @@ namespace Assignment_1.Areas.Identity.Pages.Account
                     Email = Input.Email,
                     FirstName = Input.FirstName,
                     LastName = Input.LastName,
-                    EmailConfirmed = true
+                    EmailConfirmed = true,
+                    isApproved = false  // Mark user as unapproved in database
                 };
                 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
@@ -163,14 +164,6 @@ namespace Assignment_1.Areas.Identity.Pages.Account
                     // }
 
                     await _userManager.AddToRoleAsync(user, "Contributor");
-
-                    // Mark user as unapproved in database
-                    _context.ContributorApprovals.Add(new ContributorApproval
-                    {
-                        UserId = user.Id,
-                        IsApproved = false
-                    });
-                    await _context.SaveChangesAsync();
 
                     return RedirectToPage("Login");
                 }

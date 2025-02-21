@@ -156,17 +156,13 @@ namespace Assignment_1.Areas.Identity.Pages.Account
                 ModelState.AddModelError(String.Empty, "Invalid login attempt.");
                 return Page();
             }
-
             
-            var approval = _context.ContributorApprovals.FirstOrDefault(a => a.UserId == user.Id);
-            
-            if (approval != null && !approval.IsApproved)
+            if (!user.isApproved)
             {
                 ModelState.AddModelError(string.Empty, "Your account is pending approval.");
                 return Page();
             }
             
-
             var result = await _signInManager.PasswordSignInAsync(user, Input.Password, false, false);
             
             if (result.Succeeded)

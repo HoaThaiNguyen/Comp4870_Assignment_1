@@ -3,11 +3,10 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Assignment_1.Views.Admin
 {
-    public class ApproveContributorsModel : PageModel
+    public class ManageUsersModel : PageModel
     {
         public void OnGet()
         {
         }
-
     }
 }

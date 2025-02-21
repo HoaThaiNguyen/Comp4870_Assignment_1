@@ -19,7 +19,7 @@ namespace Assignment_1.Controllers
 
         public IActionResult Index()
         {
-            var articles = _context.Articles
+            var articles = _context.Articles?
                 .Where(a => a.StartDate <= DateTime.UtcNow && a.EndDate >= DateTime.UtcNow)
                 .ToList();
             return View(articles);
@@ -36,7 +36,7 @@ namespace Assignment_1.Controllers
         public async Task<IActionResult> Create(Article article)
         {
             article.ContributorUsername = User.Identity?.Name;
-            _context.Articles.Add(article);
+            _context.Articles?.Add(article);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
         }

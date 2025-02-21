@@ -21,7 +21,7 @@ public class RoleSeeder
     public List<CustomUser> Users { get { return _users; } }
     public List<IdentityUserRole<string>> UserRoles { get { return _userRoles; } }
    
-   private List<CustomRole> GetRoles() {
+    private List<CustomRole> GetRoles() {
       // Seed Roles
       var adminRole = new CustomRole("Admin");
       adminRole.NormalizedName = adminRole.Name!.ToUpper();
@@ -51,6 +51,7 @@ public class RoleSeeder
         EmailConfirmed = true,
         FirstName = "Adam",
         LastName = "Anderson",
+        isApproved = true,
       };
       adminUser.NormalizedUserName = adminUser.UserName.ToUpper();
       adminUser.NormalizedEmail = adminUser.Email.ToUpper();
@@ -62,6 +63,7 @@ public class RoleSeeder
         EmailConfirmed = true,
         FirstName = "Cindy",
         LastName = "Cain",
+        isApproved = true,
       };
       memberUser.NormalizedUserName = memberUser.UserName.ToUpper();
       memberUser.NormalizedEmail = memberUser.Email.ToUpper();

@@ -13,34 +13,24 @@ namespace Assignment_1.Data
             : base(options)
         {
         }
+        public DbSet<Article>? Articles { get; set; }
+        //public DbSet<CustomUser>? Users {get; set;}
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+
             // Use seed method here
-            RoleSeeder seedUsersRoles = new();
+            RoleSeeder RoleSeeder = new();
             
-            builder.Entity<CustomRole>().HasData(seedUsersRoles.Roles);
-            builder.Entity<CustomUser>().HasData(seedUsersRoles.Users);
-            builder.Entity<IdentityUserRole<string>>().HasData(seedUsersRoles.UserRoles);
+            builder.Entity<CustomRole>().HasData(RoleSeeder.Roles);
+            builder.Entity<CustomUser>().HasData(RoleSeeder.Users);
+            builder.Entity<IdentityUserRole<string>>().HasData(RoleSeeder.UserRoles);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.ConfigureWarnings(warnings => warnings.Ignore(RelationalEventId.PendingModelChangesWarning));
         }
-
-        public DbSet<Article> Articles { get; set; }
-        public DbSet<ContributorApproval> ContributorApprovals {get; set;}
-    }
-
-    public class ContributorApproval
-    {
-        [Key]
-        public int Id { get; set; }
-        
-        [Required]
-        public string UserId { get; set; } = String.Empty;
-        public bool IsApproved { get; set; }
     }
 }
