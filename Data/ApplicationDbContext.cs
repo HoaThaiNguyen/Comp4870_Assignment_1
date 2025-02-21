@@ -36,10 +36,11 @@ namespace Assignment_1.Data
 
     public class ContributorApproval
     {
+        [Key]
         public int Id { get; set; }
         
         [Required]
-        public string? UserId { get; set; }
+        public string UserId { get; set; } = String.Empty;
         public bool IsApproved { get; set; }
     }
 }

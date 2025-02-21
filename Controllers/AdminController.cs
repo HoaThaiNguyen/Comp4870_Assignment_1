@@ -22,6 +22,11 @@ namespace Assignment_1.Controllers
 
         public IActionResult ApproveContributors()
         {
+            if (_context == null || _context.Users == null || _context.ContributorApprovals == null)
+            {
+                return View(new List<ContributorApprovalViewModel>()); // Return empty list if database is null
+            }
+            
             var pendingUsers = _context.ContributorApprovals
                 .Where(u => !u.IsApproved)
                 .Join(_context.Users, ca => ca.UserId, u => u.Id, (ca, u) => new ContributorApprovalViewModel
@@ -30,6 +35,11 @@ namespace Assignment_1.Controllers
                     Email = u.Email
                 })
                 .ToList();
+
+            if (pendingUsers == null)
+            {
+                pendingUsers = new List<ContributorApprovalViewModel>(); // ✅ Ensure Model is never null
+            }
 
             return View(pendingUsers);
         }

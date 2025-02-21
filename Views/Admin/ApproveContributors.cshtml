@@ -1,30 +1,37 @@
-﻿@page
-@model List<Assignment_1.Models.ContributorApprovalViewModel>
+﻿@model List<Assignment_1.Models.ContributorApprovalViewModel>
 @{
     ViewData["Title"] = "Approve Contributors";
 }
 
 <h2>Pending Contributor Approvals</h2>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Email</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var user in Model)
-        {
+@if (Model != null && Model.Any())
+{
+    <table class="table">
+        <thead>
             <tr>
-                <td>@user.Email</td>
-                <td>
-                    <form method="post" asp-action="ApproveContributor" asp-controller="Admin">
-                        <input type="hidden" name="id" value="@user.ApprovalId" />
-                        <button type="submit" class="btn btn-success">Approve</button>
-                    </form>
-                </td>
+                <th>Email</th>
+                <th>Actions</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td>@user.Email</td>
+                    <td>
+                        <form method="post" asp-action="ApproveContributor" asp-controller="Admin">
+                            <input type="hidden" name="id" value="@user.ApprovalId" />
+                            <button type="submit" class="btn btn-success">Approve</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No pending contributors to approve.</p>
+}
+
