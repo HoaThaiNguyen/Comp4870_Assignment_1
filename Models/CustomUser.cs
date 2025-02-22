@@ -14,5 +14,8 @@ public class CustomUser : IdentityUser {
   public string? LastName { get; set; }
 
   [Required]
-  public bool isApproved {get; set;} = false;
+  public string? Password {get; set;}
+
+  [Required]
+  public bool IsApproved {get; set;} = false;
 }

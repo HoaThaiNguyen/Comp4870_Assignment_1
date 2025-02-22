@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Assignment_1.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250221193716_M1")]
+    [Migration("20250222043159_M1")]
     partial class M1
     {
         /// <inheritdoc />
@@ -49,6 +49,18 @@ namespace Assignment_1.Data.Migrations
                     b.HasKey("ArticleId");
 
                     b.ToTable("Articles");
+
+                    b.HasData(
+                        new
+                        {
+                            ArticleId = 1,
+                            Body = "Charli xcx turned Crypto.com Arena into a rave at the 2025 GRAMMYs, where she delivered a wild live performance of 'Von dutch' and 'Guess' from her GRAMMY-winning album  brat. \n\n Charlie walked into the 67th Annual GRAMMY Awards as one of the night's most-nominated artists, earning eight nominations in total. She ended the night with three wins, including Best Dance Pop Recording (“Von dutch”), Best Dance/Electronic Album (BRAT)and Best Recording Package (BRAT).",
+                            ContributorUsername = "c@c.c",
+                            CreateDate = new DateTime(2025, 2, 21, 20, 31, 58, 684, DateTimeKind.Local).AddTicks(2907),
+                            EndDate = new DateTime(2025, 2, 28, 20, 31, 58, 684, DateTimeKind.Local).AddTicks(2907),
+                            StartDate = new DateTime(2025, 2, 21, 20, 31, 58, 684, DateTimeKind.Local).AddTicks(2907),
+                            Title = "Charli XCX Brings 'Brat' To The 2025 GRAMMYs"
+                        });
                 });
 
             modelBuilder.Entity("Assignment_1.Models.CustomRole", b =>
@@ -85,16 +97,16 @@ namespace Assignment_1.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "2135cca7-4d21-476b-b752-f74f587f3675",
-                            CreatedDate = new DateTime(2025, 2, 21, 11, 37, 14, 986, DateTimeKind.Local).AddTicks(9885),
+                            Id = "0d85be86-6141-45c2-974c-4c2b7cd851c4",
+                            CreatedDate = new DateTime(2025, 2, 21, 20, 31, 58, 561, DateTimeKind.Local).AddTicks(9881),
                             Description = "Admin role",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "d08bc6bc-41c1-4302-b13b-e8321c5e44a9",
-                            CreatedDate = new DateTime(2025, 2, 21, 11, 37, 14, 988, DateTimeKind.Local).AddTicks(3744),
+                            Id = "06661968-c98a-43b4-bead-6a068bd2f30e",
+                            CreatedDate = new DateTime(2025, 2, 21, 20, 31, 58, 563, DateTimeKind.Local).AddTicks(6231),
                             Description = "Contributor role",
                             Name = "Contributor",
                             NormalizedName = "CONTRIBUTOR"
@@ -124,6 +136,9 @@ namespace Assignment_1.Data.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<bool>("IsApproved")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -140,6 +155,10 @@ namespace Assignment_1.Data.Migrations
 
                     b.Property<string>("NormalizedUserName")
                         .HasMaxLength(256)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("PasswordHash")
@@ -161,9 +180,6 @@ namespace Assignment_1.Data.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("TEXT");
 
-                    b.Property<bool>("isApproved")
-                        .HasColumnType("INTEGER");
-
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedEmail")
@@ -178,41 +194,43 @@ namespace Assignment_1.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "1dee59a9-a51f-4b6b-aee6-929b2faddfe5",
+                            Id = "970eedeb-4e84-45e3-94a5-c00334c5325a",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a5b2ec98-47e4-4509-935f-571b44f6b7e1",
+                            ConcurrencyStamp = "e1b6b99a-79ec-408a-9f01-9d2add902c35",
                             Email = "a@a.a",
                             EmailConfirmed = true,
                             FirstName = "Adam",
+                            IsApproved = true,
                             LastName = "Anderson",
                             LockoutEnabled = false,
                             NormalizedEmail = "A@A.A",
                             NormalizedUserName = "A@A.A",
-                            PasswordHash = "AQAAAAIAAYagAAAAEETgjlQvh5c6vAK3uq9jIGOh8Nyp58rgPJ08J2Mrs9kqDGaiCoB78MjZYy4NrAVQpA==",
+                            Password = "P@$$w0rd",
+                            PasswordHash = "AQAAAAIAAYagAAAAELDrcqHoG9kOLIUVXuYgQ7krLsrrQUxVd8GKBrag9Lomz4OMSe5EBpih1GUskBfsqA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "2f5c7ae0-a777-48b7-9291-b4b8edbcdf32",
+                            SecurityStamp = "6eb0dadf-adb1-4aa9-86b6-96bde2ea730c",
                             TwoFactorEnabled = false,
-                            UserName = "a@a.a",
-                            isApproved = true
+                            UserName = "a@a.a"
                         },
                         new
                         {
-                            Id = "649c9c98-9c9a-40f5-b36a-c67e0c1a4e90",
+                            Id = "db849ac7-bc5e-4d43-ae78-2d370ca8788b",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "b753febb-a550-4527-9410-bbe6562dbca2",
+                            ConcurrencyStamp = "82b52b7e-dced-4fdb-934f-f26f268b5c2e",
                             Email = "c@c.c",
                             EmailConfirmed = true,
                             FirstName = "Cindy",
+                            IsApproved = true,
                             LastName = "Cain",
                             LockoutEnabled = false,
                             NormalizedEmail = "C@C.C",
                             NormalizedUserName = "C@C.C",
-                            PasswordHash = "AQAAAAIAAYagAAAAEOqDLzrL0grxGwlZmmYjfCCM8yKgnf/L1Qnc2ZX3/vSJ9RTXTTGXBRQ+WFRqmXUbNw==",
+                            Password = "P@$$w0rd",
+                            PasswordHash = "AQAAAAIAAYagAAAAEI9vrQRqpz3cHMMG2M9aCWWjYBQKb7sVICZ9d70MoKq7n/zvABlooZjhjXSlNMPkWg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "d97cfe3c-89ec-4a88-9e01-bdae34f4c9a9",
+                            SecurityStamp = "e3eb95f7-570a-4911-8c82-3ccf04d9f1ae",
                             TwoFactorEnabled = false,
-                            UserName = "c@c.c",
-                            isApproved = true
+                            UserName = "c@c.c"
                         });
                 });
 
@@ -303,13 +321,13 @@ namespace Assignment_1.Data.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "1dee59a9-a51f-4b6b-aee6-929b2faddfe5",
-                            RoleId = "2135cca7-4d21-476b-b752-f74f587f3675"
+                            UserId = "970eedeb-4e84-45e3-94a5-c00334c5325a",
+                            RoleId = "0d85be86-6141-45c2-974c-4c2b7cd851c4"
                         },
                         new
                         {
-                            UserId = "649c9c98-9c9a-40f5-b36a-c67e0c1a4e90",
-                            RoleId = "d08bc6bc-41c1-4302-b13b-e8321c5e44a9"
+                            UserId = "db849ac7-bc5e-4d43-ae78-2d370ca8788b",
+                            RoleId = "06661968-c98a-43b4-bead-6a068bd2f30e"
                         });
                 });
 

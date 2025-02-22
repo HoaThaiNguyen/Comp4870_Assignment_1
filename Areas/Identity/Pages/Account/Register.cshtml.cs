@@ -129,8 +129,9 @@ namespace Assignment_1.Areas.Identity.Pages.Account
                     Email = Input.Email,
                     FirstName = Input.FirstName,
                     LastName = Input.LastName,
+                    Password = Input.Password,
                     EmailConfirmed = true,
-                    isApproved = false  // Mark user as unapproved in database
+                    IsApproved = false  // Mark user as unapproved in database
                 };
                 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);

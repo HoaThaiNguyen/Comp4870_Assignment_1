@@ -157,7 +157,7 @@ namespace Assignment_1.Areas.Identity.Pages.Account
                 return Page();
             }
             
-            if (!user.isApproved)
+            if (!user.IsApproved)
             {
                 ModelState.AddModelError(string.Empty, "Your account is pending approval.");
                 return Page();

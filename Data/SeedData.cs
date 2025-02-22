@@ -1,26 +1,30 @@
 using System;
+using Assignment_1.Controllers;
 using Assignment_1.Models;
 using Microsoft.AspNetCore.Identity;
 
 namespace Assignment_1.Data;
 
-public class RoleSeeder
+public class SeedData
 {
     private readonly List<CustomRole> _roles;
     private readonly List<CustomUser> _users;
     private readonly List<IdentityUserRole<string>> _userRoles; 
+    private readonly List<Article> _articles;
     
-    public RoleSeeder() {
+    public SeedData() {
       _roles = GetRoles();
       _users = GetUsers();
       _userRoles = GetUserRoles(_users, _roles);
+      _articles = GetArticles();
     } 
 
     // getters & setters
     public List<CustomRole> Roles { get { return _roles; } }
     public List<CustomUser> Users { get { return _users; } }
     public List<IdentityUserRole<string>> UserRoles { get { return _userRoles; } }
-   
+    public List<Article> Articles { get { return _articles; } }
+
     private List<CustomRole> GetRoles() {
       // Seed Roles
       var adminRole = new CustomRole("Admin");
@@ -51,7 +55,8 @@ public class RoleSeeder
         EmailConfirmed = true,
         FirstName = "Adam",
         LastName = "Anderson",
-        isApproved = true,
+        Password = pwd,
+        IsApproved = true,
       };
       adminUser.NormalizedUserName = adminUser.UserName.ToUpper();
       adminUser.NormalizedEmail = adminUser.Email.ToUpper();
@@ -63,7 +68,8 @@ public class RoleSeeder
         EmailConfirmed = true,
         FirstName = "Cindy",
         LastName = "Cain",
-        isApproved = true,
+        Password = pwd,
+        IsApproved = true,
       };
       memberUser.NormalizedUserName = memberUser.UserName.ToUpper();
       memberUser.NormalizedEmail = memberUser.Email.ToUpper();
@@ -80,7 +86,8 @@ public class RoleSeeder
       // Seed UserRoles
       List<IdentityUserRole<string>> userRoles = new List<IdentityUserRole<string>>();
       
-      userRoles.Add(new IdentityUserRole<string> {
+      userRoles.Add(new IdentityUserRole<string> 
+      {
         UserId = users[0].Id,
         RoleId = roles.First(q => q.Name == "Admin").Id
       });
@@ -91,5 +98,32 @@ public class RoleSeeder
       });
     
     return userRoles;
+    }
+
+    private List<Article> GetArticles() {
+      List<Article> articles = new List<Article>();
+
+      var startDate = DateTime.UtcNow.ToLocalTime();
+
+      articles.Add(new Article
+      {
+        ArticleId = 1,
+        Title = "Charli XCX Brings 'Brat' To The 2025 GRAMMYs",
+        Body = "Charli xcx turned Crypto.com Arena into a rave at the "
+             + "2025 GRAMMYs, where she delivered a wild live performance " 
+             + "of 'Von dutch' and 'Guess' from her GRAMMY-winning album " 
+             + " brat. \n\n Charlie walked into the 67th Annual GRAMMY "
+             + "Awards as one of the night's most-nominated artists, "
+             + "earning eight nominations in total. She ended the night "
+             + "with three wins, including Best Dance Pop Recording (“Von "
+             + "dutch”), Best Dance/Electronic Album (BRAT)and Best "
+             + "Recording Package (BRAT).",
+        CreateDate = startDate,
+        StartDate = startDate,
+        EndDate = startDate.AddDays(7),
+        ContributorUsername = "c@c.c",
+      });
+
+      return articles;
     }
 }

@@ -1,0 +1,48 @@
+@using Microsoft.AspNetCore.Identity
+@model IEnumerable<Assignment_1.Models.Article>
+@inject UserManager<CustomUser> UserManager
+@{
+    ViewData["Title"] = "Articles";
+}
+
+@{
+    var currentUser = await UserManager.GetUserAsync(User);
+    var isAdmin = await UserManager.IsInRoleAsync(currentUser, "Admin");
+}
+
+<h1>Articles</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+@foreach (var article in Model)
+{
+    var currentTime = DateTime.UtcNow.ToLocalTime();
+    if (article.StartDate <= currentTime && article.EndDate >= currentTime)
+    {
+        <div class="card mb-3">
+            <div class="card-body">
+                <h4 class="card-title">@article.Title</h4>
+                <p class="card-text">
+                    @if (article.Body.Length > 100)
+                    {
+                        @article.Body.Substring(0, 100) <text>...</text>
+                        <a asp-action="Details" asp-route-id="@article.ArticleId">more...</a>
+                    }
+                    else
+                    {
+                        @article.Body
+                    }
+                </p>
+                <h6 class="text-primary">@article.ContributorUsername, @article.CreateDate.ToString("MM-dd-yyyy")</h6>
+            
+                @if (isAdmin || article.ContributorUsername == currentUser.UserName)
+                {
+                    <a asp-action="Edit" asp-route-id="@article.ArticleId">Edit</a> 
+                    <a asp-action="Delete" asp-route-id="@article.ArticleId">Delete</a>
+                }
+            </div>
+        </div>
+    }
+}

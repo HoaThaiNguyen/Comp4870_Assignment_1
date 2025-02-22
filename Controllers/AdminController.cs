@@ -28,7 +28,7 @@ namespace Assignment_1.Controllers
             }
 
             var pendingUsers = _context.Users
-                .Where(u => !u.isApproved)
+                .Where(u => !u.IsApproved)
                 .ToList();
 
             if (pendingUsers == null)
@@ -45,7 +45,7 @@ namespace Assignment_1.Controllers
             var approvalRecord = _context.Users?.FirstOrDefault(a => a.Id == id);
             if (approvalRecord != null)
             {
-                approvalRecord.isApproved = true;
+                approvalRecord.IsApproved = true;
                 _context.Users?.Update(approvalRecord);
                 await _context.SaveChangesAsync();
             }
@@ -75,17 +75,17 @@ namespace Assignment_1.Controllers
             return View(users);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> ToggleApproval(string id)
-        {
-            var user = await _userManager.FindByIdAsync(id);
-            if (user == null) return NotFound();
+        // [HttpPost]
+        // public async Task<IActionResult> ToggleApproval(string id)
+        // {
+        //     var user = await _userManager.FindByIdAsync(id);
+        //     if (user == null) return NotFound();
 
-            user.isApproved = !user.isApproved; // ✅ Toggle approval status
-            await _userManager.UpdateAsync(user);
+        //     user.IsApproved = !user.IsApproved; // ✅ Toggle approval status
+        //     await _userManager.UpdateAsync(user);
 
-            return RedirectToAction("ManageUsers");
-        }
+        //     return RedirectToAction("ManageUsers");
+        // }
 
     }
 }

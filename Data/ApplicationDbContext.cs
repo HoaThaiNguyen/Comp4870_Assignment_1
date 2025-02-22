@@ -21,11 +21,12 @@ namespace Assignment_1.Data
             base.OnModelCreating(builder);
 
             // Use seed method here
-            RoleSeeder RoleSeeder = new();
+            SeedData SeedData = new();
             
-            builder.Entity<CustomRole>().HasData(RoleSeeder.Roles);
-            builder.Entity<CustomUser>().HasData(RoleSeeder.Users);
-            builder.Entity<IdentityUserRole<string>>().HasData(RoleSeeder.UserRoles);
+            builder.Entity<CustomRole>().HasData(SeedData.Roles);
+            builder.Entity<CustomUser>().HasData(SeedData.Users);
+            builder.Entity<IdentityUserRole<string>>().HasData(SeedData.UserRoles);
+            builder.Entity<Article>().HasData(SeedData.Articles);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
