@@ -13,7 +13,7 @@ namespace Assignment_1.Data
             : base(options)
         {
         }
-        public DbSet<Article>? Articles { get; set; }
+        public DbSet<Article> Articles { get; set; }
         //public DbSet<CustomUser>? Users {get; set;}
 
         protected override void OnModelCreating(ModelBuilder builder)

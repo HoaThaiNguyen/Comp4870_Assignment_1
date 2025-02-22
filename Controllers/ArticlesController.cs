@@ -9,9 +9,11 @@ using Assignment_1.Data;
 using Assignment_1.Models;
 using Microsoft.Identity.Client;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Assignment_1.Controllers
 {
+    [Authorize]
     public class ArticlesController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -27,13 +29,20 @@ namespace Assignment_1.Controllers
         public async Task<IActionResult> Index()
         {
             var currentUser = await _userManager.GetUserAsync(User);
-            var isAdmin = await _userManager.IsInRoleAsync(currentUser, "Admin");
+            bool isAdmin = false;
+            bool isAuthenticated = User.Identity?.IsAuthenticated ?? false;
 
-            IQueryable<Article> articlesQuery = _context.Articles;
-            if (!isAdmin)
+            if (isAuthenticated && currentUser!=null)
             {
-                articlesQuery = articlesQuery.Where(
-                    a => a.ContributorUsername == currentUser.UserName);
+                isAdmin = await _userManager.IsInRoleAsync(currentUser, "Admin");
+            }
+
+            IQueryable<Article>? articlesQuery = _context.Articles;
+
+            if (isAuthenticated && !isAdmin && currentUser!=null)
+            {
+                // If the user is authenticated and NOT an admin, filter by their username
+                articlesQuery = articlesQuery?.Where(a => a.ContributorUsername == currentUser.UserName);
             }
 
             var articles = await articlesQuery.ToListAsync();
@@ -70,10 +79,15 @@ namespace Assignment_1.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ArticleId,Title,Body,CreateDate,StartDate,EndDate,ContributorUsername")] Article article)
+        public async Task<IActionResult> Create([Bind("ArticleId,Title,Body,StartDate,EndDate")] Article article)
         {
+            var currentUser = await _userManager.GetUserAsync(User);
+
             if (ModelState.IsValid)
             {
+                article.ContributorUsername = currentUser?.UserName;
+                article.CreateDate = DateTime.UtcNow.ToLocalTime();
+
                 _context.Add(article);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -102,9 +116,15 @@ namespace Assignment_1.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ArticleId,Title,Body,CreateDate,StartDate,EndDate,ContributorUsername")] Article article)
+        public async Task<IActionResult> Edit(int id, [Bind("ArticleId,Title,Body,StartDate,EndDate")] Article article)
         {
             if (id != article.ArticleId)
+            {
+                return NotFound();
+            }
+
+            var existingArticle = await _context.Articles.FindAsync(id);
+            if (existingArticle == null)
             {
                 return NotFound();
             }
@@ -113,7 +133,13 @@ namespace Assignment_1.Controllers
             {
                 try
                 {
-                    _context.Update(article);
+                    // Preserve original CreateDate and ContributorUsername
+                    existingArticle.Title = article.Title;
+                    existingArticle.Body = article.Body;
+                    existingArticle.StartDate = article.StartDate;
+                    existingArticle.EndDate = article.EndDate;
+
+                    _context.Update(existingArticle);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)

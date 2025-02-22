@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Assignment_1.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250222043159_M1")]
+    [Migration("20250222155219_M1")]
     partial class M1
     {
         /// <inheritdoc />
@@ -56,9 +56,9 @@ namespace Assignment_1.Data.Migrations
                             ArticleId = 1,
                             Body = "Charli xcx turned Crypto.com Arena into a rave at the 2025 GRAMMYs, where she delivered a wild live performance of 'Von dutch' and 'Guess' from her GRAMMY-winning album  brat. \n\n Charlie walked into the 67th Annual GRAMMY Awards as one of the night's most-nominated artists, earning eight nominations in total. She ended the night with three wins, including Best Dance Pop Recording (“Von dutch”), Best Dance/Electronic Album (BRAT)and Best Recording Package (BRAT).",
                             ContributorUsername = "c@c.c",
-                            CreateDate = new DateTime(2025, 2, 21, 20, 31, 58, 684, DateTimeKind.Local).AddTicks(2907),
-                            EndDate = new DateTime(2025, 2, 28, 20, 31, 58, 684, DateTimeKind.Local).AddTicks(2907),
-                            StartDate = new DateTime(2025, 2, 21, 20, 31, 58, 684, DateTimeKind.Local).AddTicks(2907),
+                            CreateDate = new DateTime(2025, 2, 22, 7, 52, 17, 987, DateTimeKind.Local).AddTicks(3267),
+                            EndDate = new DateTime(2025, 3, 1, 7, 52, 17, 987, DateTimeKind.Local).AddTicks(3267),
+                            StartDate = new DateTime(2025, 2, 22, 7, 52, 17, 987, DateTimeKind.Local).AddTicks(3267),
                             Title = "Charli XCX Brings 'Brat' To The 2025 GRAMMYs"
                         });
                 });
@@ -97,16 +97,16 @@ namespace Assignment_1.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "0d85be86-6141-45c2-974c-4c2b7cd851c4",
-                            CreatedDate = new DateTime(2025, 2, 21, 20, 31, 58, 561, DateTimeKind.Local).AddTicks(9881),
+                            Id = "450d73a9-a795-46e2-b52d-2fec49196eff",
+                            CreatedDate = new DateTime(2025, 2, 22, 7, 52, 17, 872, DateTimeKind.Local).AddTicks(1585),
                             Description = "Admin role",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "06661968-c98a-43b4-bead-6a068bd2f30e",
-                            CreatedDate = new DateTime(2025, 2, 21, 20, 31, 58, 563, DateTimeKind.Local).AddTicks(6231),
+                            Id = "53d09e80-5fad-45dc-b043-160c82e244e6",
+                            CreatedDate = new DateTime(2025, 2, 22, 7, 52, 17, 873, DateTimeKind.Local).AddTicks(5162),
                             Description = "Contributor role",
                             Name = "Contributor",
                             NormalizedName = "CONTRIBUTOR"
@@ -194,9 +194,9 @@ namespace Assignment_1.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "970eedeb-4e84-45e3-94a5-c00334c5325a",
+                            Id = "77fff10a-18ca-4f0d-b6b1-2b9d8502a2aa",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e1b6b99a-79ec-408a-9f01-9d2add902c35",
+                            ConcurrencyStamp = "2045cc10-6c8e-4050-a103-a647442cf347",
                             Email = "a@a.a",
                             EmailConfirmed = true,
                             FirstName = "Adam",
@@ -206,17 +206,17 @@ namespace Assignment_1.Data.Migrations
                             NormalizedEmail = "A@A.A",
                             NormalizedUserName = "A@A.A",
                             Password = "P@$$w0rd",
-                            PasswordHash = "AQAAAAIAAYagAAAAELDrcqHoG9kOLIUVXuYgQ7krLsrrQUxVd8GKBrag9Lomz4OMSe5EBpih1GUskBfsqA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEJxnc6+cFEzCQNA+rP258NDmikMJEA8Bt/gJC7CB8naoBNNp79vXdhpJOff8bTjN5A==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "6eb0dadf-adb1-4aa9-86b6-96bde2ea730c",
+                            SecurityStamp = "79656213-48ef-472a-b963-fa40d33bdb3a",
                             TwoFactorEnabled = false,
                             UserName = "a@a.a"
                         },
                         new
                         {
-                            Id = "db849ac7-bc5e-4d43-ae78-2d370ca8788b",
+                            Id = "07279eb2-88f1-4897-a608-3495010873e2",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "82b52b7e-dced-4fdb-934f-f26f268b5c2e",
+                            ConcurrencyStamp = "36713f9e-24e5-42ae-b955-f8be55ec89a7",
                             Email = "c@c.c",
                             EmailConfirmed = true,
                             FirstName = "Cindy",
@@ -226,9 +226,9 @@ namespace Assignment_1.Data.Migrations
                             NormalizedEmail = "C@C.C",
                             NormalizedUserName = "C@C.C",
                             Password = "P@$$w0rd",
-                            PasswordHash = "AQAAAAIAAYagAAAAEI9vrQRqpz3cHMMG2M9aCWWjYBQKb7sVICZ9d70MoKq7n/zvABlooZjhjXSlNMPkWg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEE6KeaLMXJy8SdzdrW1FRAK9wV63iQedvhRuaOnaGj01K9BqV6UFYmGmZF6dH8+nmw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "e3eb95f7-570a-4911-8c82-3ccf04d9f1ae",
+                            SecurityStamp = "ec301f2e-3fea-4d35-8359-7e1fff24717a",
                             TwoFactorEnabled = false,
                             UserName = "c@c.c"
                         });
@@ -321,13 +321,13 @@ namespace Assignment_1.Data.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "970eedeb-4e84-45e3-94a5-c00334c5325a",
-                            RoleId = "0d85be86-6141-45c2-974c-4c2b7cd851c4"
+                            UserId = "77fff10a-18ca-4f0d-b6b1-2b9d8502a2aa",
+                            RoleId = "450d73a9-a795-46e2-b52d-2fec49196eff"
                         },
                         new
                         {
-                            UserId = "db849ac7-bc5e-4d43-ae78-2d370ca8788b",
-                            RoleId = "06661968-c98a-43b4-bead-6a068bd2f30e"
+                            UserId = "07279eb2-88f1-4897-a608-3495010873e2",
+                            RoleId = "53d09e80-5fad-45dc-b043-160c82e244e6"
                         });
                 });
 

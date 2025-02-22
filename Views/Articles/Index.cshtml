@@ -25,7 +25,7 @@
             <div class="card-body">
                 <h4 class="card-title">@article.Title</h4>
                 <p class="card-text">
-                    @if (article.Body.Length > 100)
+                    @if (article.Body?.Length > 100)
                     {
                         @article.Body.Substring(0, 100) <text>...</text>
                         <a asp-action="Details" asp-route-id="@article.ArticleId">more...</a>
@@ -39,6 +39,7 @@
             
                 @if (isAdmin || article.ContributorUsername == currentUser.UserName)
                 {
+                    <a asp-action="Details" asp-route-id="@article.ArticleId">Details</a> 
                     <a asp-action="Edit" asp-route-id="@article.ArticleId">Edit</a> 
                     <a asp-action="Delete" asp-route-id="@article.ArticleId">Delete</a>
                 }

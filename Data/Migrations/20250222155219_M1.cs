@@ -185,15 +185,15 @@ namespace Assignment_1.Data.Migrations
             migrationBuilder.InsertData(
                 table: "Articles",
                 columns: new[] { "ArticleId", "Body", "ContributorUsername", "CreateDate", "EndDate", "StartDate", "Title" },
-                values: new object[] { 1, "Charli xcx turned Crypto.com Arena into a rave at the 2025 GRAMMYs, where she delivered a wild live performance of 'Von dutch' and 'Guess' from her GRAMMY-winning album  brat. \n\n Charlie walked into the 67th Annual GRAMMY Awards as one of the night's most-nominated artists, earning eight nominations in total. She ended the night with three wins, including Best Dance Pop Recording (“Von dutch”), Best Dance/Electronic Album (BRAT)and Best Recording Package (BRAT).", "c@c.c", new DateTime(2025, 2, 21, 20, 31, 58, 684, DateTimeKind.Local).AddTicks(2907), new DateTime(2025, 2, 28, 20, 31, 58, 684, DateTimeKind.Local).AddTicks(2907), new DateTime(2025, 2, 21, 20, 31, 58, 684, DateTimeKind.Local).AddTicks(2907), "Charli XCX Brings 'Brat' To The 2025 GRAMMYs" });
+                values: new object[] { 1, "Charli xcx turned Crypto.com Arena into a rave at the 2025 GRAMMYs, where she delivered a wild live performance of 'Von dutch' and 'Guess' from her GRAMMY-winning album  brat. \n\n Charlie walked into the 67th Annual GRAMMY Awards as one of the night's most-nominated artists, earning eight nominations in total. She ended the night with three wins, including Best Dance Pop Recording (“Von dutch”), Best Dance/Electronic Album (BRAT)and Best Recording Package (BRAT).", "c@c.c", new DateTime(2025, 2, 22, 7, 52, 17, 987, DateTimeKind.Local).AddTicks(3267), new DateTime(2025, 3, 1, 7, 52, 17, 987, DateTimeKind.Local).AddTicks(3267), new DateTime(2025, 2, 22, 7, 52, 17, 987, DateTimeKind.Local).AddTicks(3267), "Charli XCX Brings 'Brat' To The 2025 GRAMMYs" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "CreatedDate", "Description", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "06661968-c98a-43b4-bead-6a068bd2f30e", null, new DateTime(2025, 2, 21, 20, 31, 58, 563, DateTimeKind.Local).AddTicks(6231), "Contributor role", "Contributor", "CONTRIBUTOR" },
-                    { "0d85be86-6141-45c2-974c-4c2b7cd851c4", null, new DateTime(2025, 2, 21, 20, 31, 58, 561, DateTimeKind.Local).AddTicks(9881), "Admin role", "Admin", "ADMIN" }
+                    { "450d73a9-a795-46e2-b52d-2fec49196eff", null, new DateTime(2025, 2, 22, 7, 52, 17, 872, DateTimeKind.Local).AddTicks(1585), "Admin role", "Admin", "ADMIN" },
+                    { "53d09e80-5fad-45dc-b043-160c82e244e6", null, new DateTime(2025, 2, 22, 7, 52, 17, 873, DateTimeKind.Local).AddTicks(5162), "Contributor role", "Contributor", "CONTRIBUTOR" }
                 });
 
             migrationBuilder.InsertData(
@@ -201,8 +201,8 @@ namespace Assignment_1.Data.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "IsApproved", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "Password", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "970eedeb-4e84-45e3-94a5-c00334c5325a", 0, "e1b6b99a-79ec-408a-9f01-9d2add902c35", "a@a.a", true, "Adam", true, "Anderson", false, null, "A@A.A", "A@A.A", "P@$$w0rd", "AQAAAAIAAYagAAAAELDrcqHoG9kOLIUVXuYgQ7krLsrrQUxVd8GKBrag9Lomz4OMSe5EBpih1GUskBfsqA==", null, false, "6eb0dadf-adb1-4aa9-86b6-96bde2ea730c", false, "a@a.a" },
-                    { "db849ac7-bc5e-4d43-ae78-2d370ca8788b", 0, "82b52b7e-dced-4fdb-934f-f26f268b5c2e", "c@c.c", true, "Cindy", true, "Cain", false, null, "C@C.C", "C@C.C", "P@$$w0rd", "AQAAAAIAAYagAAAAEI9vrQRqpz3cHMMG2M9aCWWjYBQKb7sVICZ9d70MoKq7n/zvABlooZjhjXSlNMPkWg==", null, false, "e3eb95f7-570a-4911-8c82-3ccf04d9f1ae", false, "c@c.c" }
+                    { "07279eb2-88f1-4897-a608-3495010873e2", 0, "36713f9e-24e5-42ae-b955-f8be55ec89a7", "c@c.c", true, "Cindy", true, "Cain", false, null, "C@C.C", "C@C.C", "P@$$w0rd", "AQAAAAIAAYagAAAAEE6KeaLMXJy8SdzdrW1FRAK9wV63iQedvhRuaOnaGj01K9BqV6UFYmGmZF6dH8+nmw==", null, false, "ec301f2e-3fea-4d35-8359-7e1fff24717a", false, "c@c.c" },
+                    { "77fff10a-18ca-4f0d-b6b1-2b9d8502a2aa", 0, "2045cc10-6c8e-4050-a103-a647442cf347", "a@a.a", true, "Adam", true, "Anderson", false, null, "A@A.A", "A@A.A", "P@$$w0rd", "AQAAAAIAAYagAAAAEJxnc6+cFEzCQNA+rP258NDmikMJEA8Bt/gJC7CB8naoBNNp79vXdhpJOff8bTjN5A==", null, false, "79656213-48ef-472a-b963-fa40d33bdb3a", false, "a@a.a" }
                 });
 
             migrationBuilder.InsertData(
@@ -210,8 +210,8 @@ namespace Assignment_1.Data.Migrations
                 columns: new[] { "RoleId", "UserId" },
                 values: new object[,]
                 {
-                    { "0d85be86-6141-45c2-974c-4c2b7cd851c4", "970eedeb-4e84-45e3-94a5-c00334c5325a" },
-                    { "06661968-c98a-43b4-bead-6a068bd2f30e", "db849ac7-bc5e-4d43-ae78-2d370ca8788b" }
+                    { "53d09e80-5fad-45dc-b043-160c82e244e6", "07279eb2-88f1-4897-a608-3495010873e2" },
+                    { "450d73a9-a795-46e2-b52d-2fec49196eff", "77fff10a-18ca-4f0d-b6b1-2b9d8502a2aa" }
                 });
 
             migrationBuilder.CreateIndex(
