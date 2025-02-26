@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Assignment_1.Data;
 using Assignment_1.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace Assignment_1.Controllers
 {
@@ -15,16 +16,25 @@ namespace Assignment_1.Controllers
     public class ManageUserController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<CustomUser> _userManager;
+        private readonly RoleManager<CustomRole> _roleManager;
 
-        public ManageUserController(ApplicationDbContext context)
-        {
+        public ManageUserController(
+            ApplicationDbContext context,
+            UserManager<CustomUser> userManager,
+            RoleManager<CustomRole> roleManager
+        ){
             _context = context;
+            _userManager = userManager;
+            _roleManager = roleManager;
         }
 
         // GET: ManageUser
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Users.ToListAsync());
+            var users = await _context.Users.ToListAsync();
+
+            return View(users);
         }
 
         // GET: ManageUser/Details/5

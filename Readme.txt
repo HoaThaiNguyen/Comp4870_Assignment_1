@@ -7,20 +7,16 @@ thaihoa187@gmail.com
 
 
 NOT COMPLETED:
-- User Management
-- Add, edit, display, and delete articles
-    - Start and end dates
-- Admin and Contributor roles
 - Deployment on Azure
 - Quality of UI
 
 
 MAJOR CHALLENGES: 
-- 
+- (Still in progress) Need to have admin be able to change a user's role.
 
 
 SPECIAL INSTRUCTIONS:
-- 
+- Local database for now. Please clone the git repo and run locally.
 
 
 CONTRIBUTION: 
